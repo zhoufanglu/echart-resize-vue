@@ -46,10 +46,10 @@ export default {
     display: flex;
     align-items: center;
     > div {
-      flex: 1;
       box-sizing: border-box;
       border: solid 1px green;
       height: 300px;
+      width: 50%;
       margin: 10px;
     }
   }
