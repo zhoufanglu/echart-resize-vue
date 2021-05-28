@@ -5,6 +5,7 @@ import store from '@/store/index'
 
 const windowFn = throttle(
   function () {
+    console.log('------触发窗口大小变化事件-----')
     let innerWH = {
       innerWidth: window.innerWidth,
       innerHeight: window.innerHeight

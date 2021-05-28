@@ -38,15 +38,19 @@ export default {
   flex-direction: column;
   .first-row {
     border: solid 1px red;
+    box-sizing: border-box;
     height: 300px;
+    margin: 10px;
   }
   .second-row {
     display: flex;
     align-items: center;
     > div {
       flex: 1;
+      box-sizing: border-box;
       border: solid 1px green;
       height: 300px;
+      margin: 10px;
     }
   }
 }

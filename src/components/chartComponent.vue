@@ -26,6 +26,7 @@ export default {
   },
   methods: {
     drawChart() {
+      console.log(29, '画图表')
       this.myChart.setOption(this.option, true)
     }
   },
@@ -58,7 +59,7 @@ export default {
     //监听vuex内的窗口大小
     innerWH: {
       handler() {
-        console.log('窗口resize')
+        console.log('窗口resize', this.chartId)
         this.myChart.resize()
       },
       deep: true
