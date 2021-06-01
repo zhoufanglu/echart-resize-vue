@@ -1,5 +1,8 @@
 <template>
-  <div class="chart-box" :ref="chartId"></div>
+  <div style="width: 100%; height: 100%; border: solid 1px red">
+    <div v-show="chartLoading">loading</div>
+    <div v-show="!chartLoading" class="chart-box" :ref="chartId"></div>
+  </div>
 </template>
 
 <script>
@@ -16,7 +19,8 @@ export default {
   data() {
     return {
       myChart: null,
-      isFinished: false
+      isFinished: false,
+      chartLoading: false
     }
   },
   computed: {
@@ -26,8 +30,11 @@ export default {
   },
   methods: {
     drawChart() {
-      console.log(29, '画图表')
       this.myChart.setOption(this.option, true)
+      this.chartLoading = false
+    },
+    setLoading(val) {
+      this.chartLoading = val
     }
   },
   mounted() {
@@ -39,8 +46,11 @@ export default {
     this.myChart.on('finished', () => {
       if (!this.isFinished) {
         console.log('finished')
+        this.chartLoading = false
         this.isFinished = true
-        this.myChart.resize()
+        setTimeout(() => {
+          this.myChart.resize()
+        })
       }
     })
   },

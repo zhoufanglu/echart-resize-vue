@@ -28,8 +28,7 @@ export default {
   data() {
     return {}
   },
-  mounted() {},
-  methods: {}
+  mounted() {}
 }
 </script>
 <style lang="scss" scoped>
