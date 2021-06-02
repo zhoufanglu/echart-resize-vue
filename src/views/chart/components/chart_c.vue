@@ -5,6 +5,7 @@
       :loading="loading"
       chartId="chart_c"
       :option="option"
+      @closeLoading="closeLoading"
       ref="chartComponent"
     ></chartComponent>
   </div>
@@ -19,7 +20,8 @@ export default {
   data() {
     return {
       option: {},
-      loading: false
+      loading: false,
+      testCount: 0
     }
   },
   created() {},
@@ -28,11 +30,13 @@ export default {
   },
   methods: {
     initChart() {
+      this.testCount++
       //模拟接口，加个setTimeout
-      this.$refs.chartComponent.setLoading(true)
+      //this.$refs.chartComponent.setLoading(true)
+      this.loading = true
       setTimeout(() => {
-        this.loading = true
         this.option = {
+          testCount: this.testCount,
           tooltip: {
             trigger: 'item'
           },
@@ -76,6 +80,10 @@ export default {
           ]
         }
       }, 1000)
+    },
+    closeLoading() {
+      console.log(85, '关闭loading')
+      this.loading = false
     },
     refresh() {
       this.initChart()

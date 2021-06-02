@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%; height: 100%; border: solid 1px red">
-    <div v-show="chartLoading">loading</div>
-    <div v-show="!chartLoading" class="chart-box" :ref="chartId"></div>
+    <div v-show="loading">加载图表中...</div>
+    <div v-show="!loading" class="chart-box" :ref="chartId"></div>
   </div>
 </template>
 
@@ -19,8 +19,7 @@ export default {
   data() {
     return {
       myChart: null,
-      isFinished: false,
-      chartLoading: false
+      isFirstFinished: false
     }
   },
   computed: {
@@ -31,10 +30,6 @@ export default {
   methods: {
     drawChart() {
       this.myChart.setOption(this.option, true)
-      this.chartLoading = false
-    },
-    setLoading(val) {
-      this.chartLoading = val
     }
   },
   mounted() {
@@ -42,12 +37,14 @@ export default {
       this.myChart = echarts.init(this.$refs[this.chartId])
     }
     this.drawChart()
-
     this.myChart.on('finished', () => {
-      if (!this.isFinished) {
-        console.log('finished')
-        this.chartLoading = false
-        this.isFinished = true
+      if (this.loading) {
+        //如果还是加载状态，关闭Loading
+        this.$emit('closeLoading')
+      }
+      if (!this.isFirstFinished) {
+        //只有在第一次的时候resize
+        this.isFirstFinished = true
         setTimeout(() => {
           this.myChart.resize()
         })
@@ -73,6 +70,9 @@ export default {
         this.myChart.resize()
       },
       deep: true
+    },
+    loading(newVal) {
+      console.log('loading状态', newVal)
     }
   }
 }
