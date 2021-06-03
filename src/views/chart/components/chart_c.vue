@@ -29,9 +29,7 @@ export default {
   },
   methods: {
     initChart() {
-      this.testCount++
       //模拟接口，加个setTimeout
-      //this.$refs.chartComponent.setLoading(true)
       this.loading = true
       setTimeout(() => {
         this.option = {
