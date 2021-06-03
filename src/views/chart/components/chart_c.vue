@@ -20,8 +20,7 @@ export default {
   data() {
     return {
       option: {},
-      loading: false,
-      testCount: 0
+      loading: false
     }
   },
   created() {},
@@ -40,7 +39,6 @@ export default {
             text: 'chart_c',
             x: 'center'
           },
-          testCount: this.testCount,
           tooltip: {
             trigger: 'item'
           },
