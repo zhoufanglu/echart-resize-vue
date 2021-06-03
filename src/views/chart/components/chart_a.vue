@@ -16,6 +16,10 @@ export default {
   created() {},
   mounted() {
     this.option = {
+      title: {
+        text: 'chart_a',
+        x: 'center'
+      },
       xAxis: {
         type: 'category',
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

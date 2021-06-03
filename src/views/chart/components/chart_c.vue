@@ -36,6 +36,10 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.option = {
+          title: {
+            text: 'chart_c',
+            x: 'center'
+          },
           testCount: this.testCount,
           tooltip: {
             trigger: 'item'

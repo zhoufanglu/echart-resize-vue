@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%; height: 100%; border: solid 1px red">
-    <div v-show="loading">加载图表中...</div>
+    <div v-show="loading" style="font-size: 26px">加载图表中...</div>
     <div v-show="!loading" class="chart-box" :ref="chartId"></div>
   </div>
 </template>
@@ -37,13 +37,15 @@ export default {
       this.myChart = echarts.init(this.$refs[this.chartId])
     }
     this.drawChart()
+    //finished事件，麻烦，Hover，click事件都会触发，但是也是真的图表完成事件
     this.myChart.on('finished', () => {
+      /**********************只有在Loading状态的时候才能关闭***********************/
       if (this.loading) {
         //如果还是加载状态，关闭Loading
         this.$emit('closeLoading')
       }
+      /**********************只有在第一次的时候重置大小***********************/
       if (!this.isFirstFinished) {
-        //只有在第一次的时候resize
         this.isFirstFinished = true
         setTimeout(() => {
           this.myChart.resize()
@@ -70,10 +72,10 @@ export default {
         this.myChart.resize()
       },
       deep: true
-    },
-    loading(newVal) {
-      console.log('loading状态', newVal)
     }
+    /*loading(newVal) {
+      console.log('loading状态', newVal)
+    }*/
   }
 }
 </script>
