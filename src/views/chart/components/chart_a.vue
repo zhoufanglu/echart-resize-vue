@@ -27,6 +27,13 @@ export default {
       yAxis: {
         type: 'value'
       },
+      tooltip: {
+        trigger: 'axis',
+        formatter: function (value) {
+          console.log(33, value[0])
+          return value.data + '个'
+        }
+      },
       series: [
         {
           data: [150, 230, 224, 218, 135, 147, 260],
